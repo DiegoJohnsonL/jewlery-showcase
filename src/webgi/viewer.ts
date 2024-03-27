@@ -56,6 +56,7 @@ export async function setupViewer({setDiamondObjects, setSilver, setGold} : {set
   let diamondObjects: any[] = []
 
   ring = viewer.scene.findObjectsByName('ring-compare')[0] as any as Mesh<BufferGeometry, Material>
+  console.log("ring", ring)
   silver = viewer.scene.findObjectsByName('alliance')[0] as any as Mesh<BufferGeometry, Material>
   gold = viewer.scene.findObjectsByName('entourage')[0] as any as Mesh<BufferGeometry, Material>
   for (const obj of diamondsObjectNames2) {
