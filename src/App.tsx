@@ -5,8 +5,8 @@ import { AccumulativeShadows, Center, Environment, MeshRefractionMaterial, Orbit
 import { Bloom, EffectComposer, N8AO, ToneMapping } from "@react-three/postprocessing";
 import * as THREE from 'three'
 import Loader from "./components/loader";
-import useWebgi from "./components/useWebgi";
 import React from "react";
+import Webgi from "./components/Webgi";
 
 function Ring({ frame, diamonds, env, ...props} : any) {
   const { nodes, materials } = useGLTF('/3-stone-transformed.glb') as any
@@ -52,9 +52,9 @@ function FiberScene({ frame, diamondColor: diamonds } : any) {
 
 
 function App() {
-  const webdi = useWebgi()
   const [diamondColor, setDiamondColor] = React.useState('#ffffff');
   const [frameColor, setFrameColor] = React.useState('#fff0f0');
+
   return (
     <div className="w-full h-full flex flex-col gap-4">
       <div className="w-full grid grid-cols-2 gap-8">
@@ -67,7 +67,7 @@ function App() {
         <div className="flex flex-col">
           <p>Webgi</p>
           <div className="h-screen max-h-[70vh]">
-            {webdi}
+            <Webgi/>
           </div>
         </div>
       </div>

@@ -1,9 +1,9 @@
-import Home from "./Webgi";
+import Webgi from "./Webgi";
 
 export default function useWebgi() {
   return (
     <>
-      <Home />
+      <Webgi />
     </>
   );
 }
