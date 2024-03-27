@@ -57,7 +57,7 @@ function App() {
 
   return (
     <div className="w-full h-full flex flex-col gap-4">
-      <div className="w-full grid grid-cols-2 gap-8">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex flex-col">
           <p>React Three Fiber</p>
           <div id="canvas-container" className="h-screen max-h-[70vh]">
