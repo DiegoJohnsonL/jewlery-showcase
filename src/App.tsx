@@ -1,35 +1,80 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Canvas, useFrame } from "@react-three/fiber";
+import "./App.css";
+import { Suspense, useRef } from "react";
+import { Mesh } from "three";
+import { Html, OrbitControls, useGLTF, useProgress } from "@react-three/drei";
 
-function App() {
-  const [count, setCount] = useState(0)
+function Loader() {
+  const { progress } = useProgress();
+  return <Html center>{progress} % loaded</Html>;
+}
+
+function FiberScene() {
+  const ringTwo = useGLTF("/ring2_webgi.glb");
+
+  const meshRef = useRef<Mesh>(null!);
+  useFrame((state, delta) => {
+    meshRef.current.rotation.y += delta * 0.4;
+  });
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ambientLight intensity={0.1} />
+      <directionalLight position={[0, 0, 5]} />
+      <mesh ref={meshRef}>
+        <primitive object={ringTwo.scene} />
+        <meshStandardMaterial color={"red"} />
+      </mesh>
+      <OrbitControls target={[0, 0.3, 0]} />
     </>
-  )
+  );
 }
 
-export default App
+function WebglScene() {
+  const ringOne = useGLTF("/ring_webgi.glb");
+
+  const meshRef = useRef<Mesh>(null!);
+  useFrame((state, delta) => {
+    meshRef.current.rotation.y += delta * 0.4;
+  });
+  return (
+    <>
+      <ambientLight intensity={0.1} />
+      <directionalLight position={[0, 0, 5]} />
+      <mesh ref={meshRef}>
+        <primitive object={ringOne.scene} />
+        <meshStandardMaterial color={"red"} />
+      </mesh>
+      <OrbitControls target={[0, 0.3, 0]} />
+    </>
+  );
+}
+
+function App() {
+  return (
+    <div className="w-full h-full grid grid-cols-2">
+      <div className="flex flex-col">
+        <p>React Three Fiber</p>
+        <div id="canvas-container" className="h-full">
+          <Canvas shadows>
+            <Suspense fallback={<Loader />}>
+              <FiberScene />
+            </Suspense>
+          </Canvas>
+        </div>
+      </div>
+      <div className="flex flex-col">
+        <p>Webgi</p>
+        <div id="canvas-container" className="h-full">
+          <Canvas shadows>
+            <Suspense fallback={<Loader />}>
+              <WebglScene />
+            </Suspense>
+          </Canvas>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
