@@ -1,4 +1,4 @@
-import { ViewerApp, addBasePlugins, AssetManagerPlugin,SSAOPlugin, SSRPlugin, BloomPlugin, AssetImporter, Mesh, BufferGeometry, Material, mobileAndTabletCheck} from "webgi";
+import { ViewerApp, addBasePlugins, AssetManagerPlugin,SSAOPlugin, SSRPlugin, BloomPlugin, AssetImporter, Mesh, BufferGeometry, Material, mobileAndTabletCheck, TonemapPlugin} from "webgi";
 
 let viewer: ViewerApp;
 
@@ -18,7 +18,7 @@ const diamondsObjectNames2 = [
 export async function setupViewer({setDiamondObjects, setSilver, setGold} : {setDiamondObjects: React.Dispatch<React.SetStateAction<any[]>>, setSilver: React.Dispatch<React.SetStateAction<any>>, setGold: React.Dispatch<React.SetStateAction<any>>}) {
   viewer = new ViewerApp({
     canvas: document.getElementById("webgi-canvas") as HTMLCanvasElement,
-    // useGBufferDepth: true,
+    useGBufferDepth: true,
     isAntialiased: false,
   });
 
@@ -27,7 +27,9 @@ export async function setupViewer({setDiamondObjects, setSilver, setGold} : {set
   viewer.renderer.displayCanvasScaling = Math.min(window.devicePixelRatio, 1);
 
   //@ts-ignore
-  await addBasePlugins(viewer);
+  await addBasePlugins(viewer, {
+    depthTonemap: new TonemapPlugin(true),
+  });
   //@ts-expect-error - AssetManagerPlugin is not recognized as a plugin type
   const manager = await viewer.getPlugin(AssetManagerPlugin);
   const camera = viewer.scene.activeCamera
@@ -61,6 +63,11 @@ export async function setupViewer({setDiamondObjects, setSilver, setGold} : {set
       diamondObjects.push(o)
   }
 
+  setDiamondObjects(diamondObjects)
+  setSilver(silver)
+  setGold(gold)
+  
+
   if(camera.controls){
     camera.controls!.enabled = false;
   } 
@@ -71,13 +78,9 @@ export async function setupViewer({setDiamondObjects, setSilver, setGold} : {set
     //@ts-ignore
     bloom.enabled = false;
     //@ts-ignore
-    camera.setCameraOptions({ fov: 65 });
   }
 
-  setDiamondObjects(diamondObjects)
-  setSilver(silver)
-  setGold(gold)
-  ring.rotation.set(Math.PI/2, 0.92, 0)
+  
 
 }
 

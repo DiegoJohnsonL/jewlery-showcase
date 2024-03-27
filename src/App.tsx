@@ -56,17 +56,17 @@ function App() {
   const [frameColor, setFrameColor] = React.useState('#fff0f0');
 
   return (
-    <div className="w-full h-full flex flex-col gap-4">
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="w-full h-full flex flex-col gap-8">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-14 px-0">
         <div className="flex flex-col">
           {/* <p>Webgi</p> */}
-          <div className="h-screen max-h-[70vh]">
+          <div className="h-screen max-h-[60vh]">
             <Webgi diamondColor={diamondColor} silverColor={frameColor}/>
           </div>
         </div>
         <div className="flex flex-col">
           {/* <p>React Three Fiber</p> */}
-          <div id="canvas-container" className="h-screen max-h-[70vh]">
+          <div id="canvas-container" className="h-screen max-h-[60vh]">
             <FiberScene diamondColor={diamondColor} frame={frameColor} />
           </div>
         </div>
