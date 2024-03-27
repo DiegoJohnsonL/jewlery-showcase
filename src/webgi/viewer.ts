@@ -15,7 +15,7 @@ const diamondsObjectNames2 = [
   'Object'
 ]
 
-export async function setupViewer({setDiamondObjects} : {setDiamondObjects: React.Dispatch<React.SetStateAction<any[]>>}) {
+export async function setupViewer({setDiamondObjects, setSilver, setGold} : {setDiamondObjects: React.Dispatch<React.SetStateAction<any[]>>, setSilver: React.Dispatch<React.SetStateAction<any>>, setGold: React.Dispatch<React.SetStateAction<any>>}) {
   viewer = new ViewerApp({
     canvas: document.getElementById("webgi-canvas") as HTMLCanvasElement,
     // useGBufferDepth: true,
@@ -58,7 +58,8 @@ export async function setupViewer({setDiamondObjects} : {setDiamondObjects: Reac
       diamondObjects.push(o)
   }
   setDiamondObjects(diamondObjects)
-
+  setSilver(silver)
+  setGold(gold)
   ring.rotation.set(Math.PI/2, 0.92, 0)
 
 }
