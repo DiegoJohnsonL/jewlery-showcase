@@ -7,3 +7,162 @@
   padding: 2rem;
   text-align: center;
 }
+
+
+.footer--container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  bottom: 40px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  z-index: 2;
+}
+
+.footer--container .footer--menu {
+  opacity: 1;
+}
+
+.footer--container .footer--menu ul {
+  list-style: none;
+  display: inline-flex;
+  gap: 3em;
+  margin: 0;
+  padding: 0;
+}
+
+.footer--container .footer--menu > ul li {
+  pointer-events: auto;
+  cursor: pointer;
+  transition: all 0.8s ease-in-out;
+}
+
+.footer--container .footer--menu > ul li:hover {
+  transform: translateY(-5px) !important;
+}
+
+.footer--container .footer--menu > ul li.active::after {
+  content: '';
+  transform: translate3d(35%, 0, 0) translateY(10px);
+  width: 20px;
+  height: 3px;
+  background: #5a3540;
+  border-radius: 10px;
+  display: block;
+}
+
+.footer--container .footer--menu img {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}
+
+.footer--container .gem--menu {
+  border: 1px solid;
+  bottom: 90px;
+  background: #ffffffe0;
+  border-radius: 50px;
+  padding: 20px 30px;
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.4s ease-in-out;
+}
+
+.footer--container .gem--menu > ul {
+  list-style: none;
+  display: inline-flex;
+  gap: 2em;
+  margin: 0;
+  padding: 0;
+}
+
+.footer--container .gem--menu li {
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  display: inline-grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.footer--container .gem--menu li img {
+  margin-top: 7px;
+  transition: all 0.8s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}
+
+.footer--container .gem--menu li img:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.footer--container .gem--menu li.active::after {
+  content: '';
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  position: absolute;
+  top: 10px;
+  border: 1px solid #d4b1b1;
+}
+
+.footer--container .gem--menu.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.footer--container .close-gems {
+  margin-top: 5px;
+}
+
+.footer--container .materials--menu {
+  border: 1px solid;
+  bottom: 90px;
+  background: #ffffffe0;
+  border-radius: 50px;
+  padding: 20px 30px;
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.8s ease-in-out;
+}
+
+.footer--container .materials--menu > ul {
+  list-style: none;
+  display: inline-flex;
+  gap: 3em;
+  margin: 0;
+  padding: 0;
+}
+
+.footer--container .materials--menu li {
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  display: inline-grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.footer--container .materials--menu li img {
+  transition: all 0.8s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  width: 50px;
+}
+
+.footer--container .materials--menu li img:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
