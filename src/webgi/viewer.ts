@@ -1,8 +1,21 @@
-import { ViewerApp, addBasePlugins, AssetManagerPlugin,SSAOPlugin, SSRPlugin, BloomPlugin, AssetImporter} from "webgi";
+import { ViewerApp, addBasePlugins, AssetManagerPlugin,SSAOPlugin, SSRPlugin, BloomPlugin, AssetImporter, Mesh, BufferGeometry, MeshStandardMaterial2, Material} from "webgi";
 
 let viewer: ViewerApp;
 
-export async function setupViewer() {
+const diamondsObjectNames = [
+  'diamonds',
+  'diamonds001',
+  'diamonds002',
+  'diamonds003',
+  'diamonds004',
+  'diamonds005',
+]
+
+const diamondsObjectNames2 = [
+  'Object'
+]
+
+export async function setupViewer({setDiamondObjects} : {setDiamondObjects: React.Dispatch<React.SetStateAction<any[]>>}) {
   viewer = new ViewerApp({
     canvas: document.getElementById("webgi-canvas") as HTMLCanvasElement,
     // useGBufferDepth: true,
@@ -34,6 +47,20 @@ export async function setupViewer() {
 
   //@ts-expect-error - AssetManagerPlugin is not recognized as a plugin type
   const models = await manager.addFromPath("/ring3_webgi.glb");
+  let ring: Mesh<BufferGeometry, Material>, gold: Mesh<BufferGeometry, Material>, silver: Mesh<BufferGeometry, Material>
+  let diamondObjects: any[] = []
+
+  ring = viewer.scene.findObjectsByName('ring-compare')[0] as any as Mesh<BufferGeometry, Material>
+  silver = viewer.scene.findObjectsByName('alliance')[0] as any as Mesh<BufferGeometry, Material>
+  gold = viewer.scene.findObjectsByName('entourage')[0] as any as Mesh<BufferGeometry, Material>
+  for (const obj of diamondsObjectNames2) {
+      const o = viewer.scene.findObjectsByName(obj)[0]
+      diamondObjects.push(o)
+  }
+  setDiamondObjects(diamondObjects)
+
+  ring.rotation.set(Math.PI/2, 0.92, 0)
+
 }
 
 export function disposeViewer() {

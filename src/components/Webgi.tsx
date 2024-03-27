@@ -1,10 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setupViewer, disposeViewer } from "../webgi/viewer";
+import { Color } from "three";
 
-export default function Webgi() {
+export default function Webgi({ diamondColor } : { diamondColor: string }) {
   
+  const [diamondObjects, setDiamondObjects] = useState<any[]>([])
+
   useEffect(() => {
-    setupViewer();
+    diamondObjects.forEach((diamond) => {
+      diamond.material.color = new Color(diamondColor);
+      console.log(diamond)
+    })
+  }, [diamondColor]);
+
+  useEffect(() => {
+    setupViewer({ setDiamondObjects });
     return () => {
       disposeViewer();
     };

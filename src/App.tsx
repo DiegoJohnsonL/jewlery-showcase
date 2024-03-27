@@ -61,7 +61,7 @@ function App() {
         <div className="flex flex-col">
           {/* <p>Webgi</p> */}
           <div className="h-screen max-h-[70vh]">
-            <Webgi/>
+            <Webgi diamondColor={diamondColor}/>
           </div>
         </div>
         <div className="flex flex-col">
