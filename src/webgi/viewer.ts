@@ -1,4 +1,4 @@
-import { ViewerApp, addBasePlugins, AssetManagerPlugin,SSAOPlugin, SSRPlugin, BloomPlugin, AssetImporter, Mesh, BufferGeometry, Material} from "webgi";
+import { ViewerApp, addBasePlugins, AssetManagerPlugin,SSAOPlugin, SSRPlugin, BloomPlugin, AssetImporter, Mesh, BufferGeometry, Material, mobileAndTabletCheck} from "webgi";
 
 let viewer: ViewerApp;
 
@@ -22,12 +22,15 @@ export async function setupViewer({setDiamondObjects, setSilver, setGold} : {set
     isAntialiased: false,
   });
 
+  const isMobile = mobileAndTabletCheck()
+
   viewer.renderer.displayCanvasScaling = Math.min(window.devicePixelRatio, 1);
 
   //@ts-ignore
   await addBasePlugins(viewer);
   //@ts-expect-error - AssetManagerPlugin is not recognized as a plugin type
   const manager = await viewer.getPlugin(AssetManagerPlugin);
+  const camera = viewer.scene.activeCamera
   //@ts-ignore
   const importer = manager.importer as AssetImporter;
   //@ts-ignore
@@ -57,6 +60,20 @@ export async function setupViewer({setDiamondObjects, setSilver, setGold} : {set
       const o = viewer.scene.findObjectsByName(obj)[0]
       diamondObjects.push(o)
   }
+
+  if(camera.controls){
+    camera.controls!.enabled = false;
+  } 
+
+  if(isMobile){
+    //@ts-ignore
+    ssr.passes.ssr.passObject.stepCount /= 2;
+    //@ts-ignore
+    bloom.enabled = false;
+    //@ts-ignore
+    camera.setCameraOptions({ fov: 65 });
+  }
+
   setDiamondObjects(diamondObjects)
   setSilver(silver)
   setGold(gold)

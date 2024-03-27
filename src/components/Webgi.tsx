@@ -19,6 +19,7 @@ export default function Webgi({ diamondColor, silverColor } : { diamondColor: st
     const color = Number(silverColor.replace("#", "0x"));
     if(silver){
       silver.material.color = new Color(color);
+      console.log("silver", silver)
     }
     if (gold){
       console.log("gold", gold)
