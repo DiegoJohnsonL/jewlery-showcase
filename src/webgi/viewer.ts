@@ -1,15 +1,15 @@
-import { ViewerApp, addBasePlugins, AssetManagerPlugin,SSAOPlugin, SSRPlugin, BloomPlugin, AssetImporter, Mesh, BufferGeometry, MeshStandardMaterial2, Material} from "webgi";
+import { ViewerApp, addBasePlugins, AssetManagerPlugin,SSAOPlugin, SSRPlugin, BloomPlugin, AssetImporter, Mesh, BufferGeometry, Material} from "webgi";
 
 let viewer: ViewerApp;
 
-const diamondsObjectNames = [
-  'diamonds',
-  'diamonds001',
-  'diamonds002',
-  'diamonds003',
-  'diamonds004',
-  'diamonds005',
-]
+// const diamondsObjectNames = [
+//   'diamonds',
+//   'diamonds001',
+//   'diamonds002',
+//   'diamonds003',
+//   'diamonds004',
+//   'diamonds005',
+// ]
 
 const diamondsObjectNames2 = [
   'Object'

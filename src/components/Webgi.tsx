@@ -13,12 +13,12 @@ export default function Webgi({ diamondColor, silverColor } : { diamondColor: st
       diamond.material.color = new Color(diamondColor);
       console.log(diamond)
     })
-  }, [diamondColor]);
+  }, []);
 
   useEffect(() => {
     const color = Number(silverColor.replace("#", "0x"));
     silver.material.color = new Color(color);
-    // gold.material.color = new Color(color);
+    gold.material.color = new Color(color);
   }, [silverColor]);
 
   useEffect(() => {
