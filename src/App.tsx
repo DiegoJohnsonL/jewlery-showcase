@@ -59,15 +59,15 @@ function App() {
     <div className="w-full h-full flex flex-col gap-4">
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex flex-col">
-          <p>React Three Fiber</p>
-          <div id="canvas-container" className="h-screen max-h-[70vh]">
-            <FiberScene diamondColor={diamondColor} frame={frameColor} />
+          {/* <p>Webgi</p> */}
+          <div className="h-screen max-h-[70vh]">
+            <Webgi/>
           </div>
         </div>
         <div className="flex flex-col">
-          <p>Webgi</p>
-          <div className="h-screen max-h-[70vh]">
-            <Webgi/>
+          {/* <p>React Three Fiber</p> */}
+          <div id="canvas-container" className="h-screen max-h-[70vh]">
+            <FiberScene diamondColor={diamondColor} frame={frameColor} />
           </div>
         </div>
       </div>
